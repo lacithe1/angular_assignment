@@ -1,0 +1,9 @@
+.navbar-nav > li{
+    margin-left:10px;
+    margin-right:10px;
+    background-color: rgb(230, 238, 238);
+  }
+
+.navbar{
+    margin-left: 20px;
+}

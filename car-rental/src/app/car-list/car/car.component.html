@@ -1,0 +1,15 @@
+<div class="row ">
+    <div class="col-md-3">
+        <img [src]="car.imgUrl" alt="Product image">
+    </div>
+    <div class="col-md-2 ">
+        <h5 class="text-secondary">{{car.manufacturer}} {{car.type}}</h5>
+        <p *ngIf="car.condition">Availablity: {{car.condition.title}}</p>
+        <p>License Number: {{car.license}}</p>
+        <p>Date acquired: {{car.acqDate | date}}</p>
+        <p>Fee/day: {{car.rfee}}</p>
+        <p>Fee/km: {{car.kmfee}}</p>
+        <button class="btn btn-sm btn-primary" (click)="navigateToCarForm(car.id)">Edit</button>
+        <button class="btn btn-sm btn-danger" (click)="deleteCar(car.id)">Delete</button>
+    </div>
+</div>

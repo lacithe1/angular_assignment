@@ -1,0 +1,19 @@
+<div class="row mt-4">
+    <div class="col-md-6">
+        <div class="alert alert-danger" role="alert" *ngIf="errorMessage">{{errorMessage}}</div>
+        <div class="alert alert-success" role="alert" *ngIf="successMessage">{{successMessage}}</div>
+      <form [formGroup]="userForm">
+        <label for="name">Name</label>
+        <input type="text" class="form-control" id="name" formControlName="name">
+        <label for="idno">ID number</label>
+        <input type="text" class="form-control" id="idno" formControlName="idno">
+        <label for="phoneno">Phone Number</label>
+        <input type="text" autofocus="autofocus" class="form-control" id="phoneno" formControlName="phoneno">
+        <div class="text-danger" *ngIf="phoneno.invalid && (phoneno.dirty || phoneno.touched)">
+            <small *ngIf="phoneno.errors.maxlength">Acceptable phone numbers consist of 11 numbers.</small>
+            <small *ngIf="phoneno.errors.min">Phone number must be above 0.</small>
+        </div>
+        <button class="btn btn-primary mt-4" (click)="createUser()">Save Client</button>
+      </form>
+    </div>
+  </div>

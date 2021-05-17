@@ -1,0 +1,53 @@
+<div class="row mt-4">
+    <div class="col-md-6">
+      <form [formGroup]="carForm">
+        <label for="type">Type</label>
+        <input type="text" class="form-control" id="type" formControlName="type">
+
+        <label for="manufacturer">Manufacturer</label>
+        <input type="text" class="form-control" id="manufacturer" formControlName="manufacturer">
+
+        <label for="imgUrl">Image URL</label>
+        <input type="text" class="form-control" id="imgUrl" formControlName="imgUrl">
+        <div class="text-danger" *ngIf="imgUrl.invalid && (imgUrl.dirty || imgUrl.touched)">
+            <small *ngIf="imgUrl.errors.pattern">A megadott cím nem valid.</small>
+        </div>
+
+        <label for="license">License</label>
+        <input type="text" class="form-control" id="license" formControlName="license">
+        
+        <label for="rentalno">Rental Number</label>
+        <input type="number" autofocus="autofocus" class="form-control" id="rentalno" formControlName="rentalno">
+        <div class="text-danger" *ngIf="rentalno.invalid && (rentalno.dirty || rentalno.touched)">
+            <small *ngIf="rentalno.errors.min">Rental number must be above 0.</small>
+        </div>
+        
+        <label for="acqDate">Acquired (Date)</label>
+        <input type="date" class="form-control" id="acqDate" formControlName="acqDate">
+
+        <label for="rfee">Rental Fee</label>
+        <input type="number" autofocus="autofocus" class="form-control" id="rfee" formControlName="rfee">
+        <div class="text-danger" *ngIf="rfee.invalid && (rfee.dirty || rfee.touched)">
+            <small *ngIf="rfee.errors.min">Rental fee must be above 0.</small>
+        </div>
+
+        <label for="kmfee">Fee/Kilometer</label>
+        <input type="number" autofocus="autofocus" class="form-control" id="kmfee" formControlName="kmfee">
+        <div class="text-danger" *ngIf="kmfee.invalid && (kmfee.dirty || kmfee.touched)">
+            <small *ngIf="kmfee.errors.min">Kilometer fee must be above 0.</small>
+        </div>
+
+
+        <label for="rentedby">Rented by</label>
+        <select [compareWith]="compareUsers" class="form-control" id="rentedby" formControlName="rentedby">
+          <option *ngFor="let user of users" [ngValue]="user">{{user.name}}</option>
+        </select>
+
+        <label for="condition">Status</label>
+        <select class="form-control" id="condition" formControlName="condition">
+            <option *ngFor="let status of condition" [ngValue]="status">{{status.title}}</option>
+        </select>
+        <button class="btn btn-primary mt-4" (click)="addCar()" [disabled]="carForm.invalid">Save car</button>
+      </form>
+    </div>
+  </div>
